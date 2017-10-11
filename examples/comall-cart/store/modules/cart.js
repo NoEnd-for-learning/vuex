@@ -14,8 +14,8 @@ const getters = {
 const actions = {
     checkout ({ commit, state }, products) {
         const savedCartItems = [...state.added] //缓存数据
-        commit(types.CHECKOUT_REQUEST)
-        shop.buyProducts(
+        commit(types.CHECKOUT_REQUEST) // 更新购物车数据及结算状态
+        shop.buyProducts( // 调用api 中的方法，提交异步请求
             products,
             () => commit(types.CHECKOUT_SUCCESS),
             () => commit(types.CHECKOUT_FAILURE, { savedCartItems })

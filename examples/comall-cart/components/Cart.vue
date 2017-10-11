@@ -36,6 +36,7 @@ export default {
     methods: {
         checkout (products) {
             this.$store.dispatch('checkout', products)
+            // 派发'checkout' 触发cart 模块中的actions, 提交异步请求
         }
     }
 }
