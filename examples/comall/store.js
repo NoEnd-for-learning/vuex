@@ -12,14 +12,18 @@ const state = {
 // Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，解构赋值，即{ commit }
 // 因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters
 
-// 在store 中注册，用dispatch 派发
+// commit实质上是是context 中的一个方法，写在action里面
+// 对比commit，dispatch 发现：很类似
+// commit:ƒ boundCommit(type, payload, options)
+// dispatch:ƒ boundDispatch(type, payload)
 // Actions 支持同样的载荷方式和对象方式进行分发：
-// 1.以载荷形式分发
+
+// 以载荷形式分发
 // store.dispatch('incrementAsync', {
 //     amount: 10
 // })
 //
-// 2.以对象形式分发
+// 以对象形式分发
 // store.dispatch({
 //     type: 'incrementAsync',
 //     amount: 10
@@ -46,10 +50,15 @@ const actions = {
 }
 
 // mutations 必须同步操作(限制)
-// 
+// 实质上也是action的一种，用法也同action
+// 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation, 非常类似于事件
+// 实现过程：
+// 1.由actions 中的commit(types) 触发相应的types
+// 2.每个 mutation 都有一个字符串的 事件类型 (type) -- 由actions触发决定
+// 和 一个 回调函数 (handler) -- 入参为state, 这时改变store 中的状态
 const mutations = {
     increment(state) {
-        state.count++;
+        state.count++;// 变更状态(改变了count), 在组件中重新渲染
         console.log(this, state.count)
     },
     decrement(state) {
@@ -57,6 +66,9 @@ const mutations = {
     }
 }
 
+// [为了渲染另外一种数据]
+// 有时候我们需要从 store 中的 state 中派生出一些状态，
+// 例如对列表进行过滤并计数
 const getters = {
     evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd'
 }

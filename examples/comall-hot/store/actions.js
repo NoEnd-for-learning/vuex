@@ -10,5 +10,5 @@ export const incrementIfOdd = ({ commit, state }) => {
 export const incrementAsync = ({ commit }) => {
     setTimeout(() => {
         commit('increment')
-}, 1000)
+    }, 500)
 }

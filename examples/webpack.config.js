@@ -3,7 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-
+  // https://segmentfault.com/a/1190000004280859
   devtool: 'inline-source-map',
 
   entry: fs.readdirSync(__dirname).reduce((entries, dir) => {
