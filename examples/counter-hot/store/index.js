@@ -8,7 +8,11 @@ Vue.use(Vuex)
 
 const state = {
   count: 0,
-  history: []
+  history: [],
+  user: { // 自定义的state
+    name: 'tShu',
+    age: 25
+  }
 }
 
 const store = new Vuex.Store({

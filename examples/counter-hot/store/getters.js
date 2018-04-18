@@ -10,3 +10,9 @@ export const recentHistory = state => {
     .toString()
     .replace(/,/g, ', ')
 }
+
+/* 自定义 */
+export const person = state => {
+  let user = `我的名字是：${state.user.name}, 今年${state.user.age}岁了！`
+  return user
+}
